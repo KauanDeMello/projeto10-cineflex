@@ -15,7 +15,6 @@ export default function HomePage() {
         console.log(res.data)
         } )
         promise.catch((err) => {
-        console.log(err.response.data)  
         })
     }, [])
 
@@ -27,7 +26,7 @@ export default function HomePage() {
             <ListContainer>
                 {filmes.map((posts)=> (
                      <MovieContainer key={posts.id}>
-                        <Link to="/sessoes">
+                        <Link to={`/sessoes/${posts.id}`}>
                         <img src={posts.posterURL} alt="poster"/> 
                         </Link>
                  </MovieContainer>
