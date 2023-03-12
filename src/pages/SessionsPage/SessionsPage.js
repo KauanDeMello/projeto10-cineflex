@@ -26,15 +26,18 @@ export default function SessionsPage() {
     return (
         <PageContainer>
             Selecione o horário
-            <div>
-                <SessionContainer>
-                    Sexta - 03/03/2023
-                    <ButtonsContainer>
-                        <button>14:00</button>
-                        <button>15:00</button>
-                    </ButtonsContainer>
-                </SessionContainer>
-            </div>
+            {filmes.days.map((day) => (
+        <div key={day.id}> 
+         <SessionContainer>
+            {`${day.weekday} - ${day.date}`}
+        <ButtonsContainer>
+          {day.showtimes.map((showtime) => (
+            <button key={showtime.id}>{showtime.name}</button>
+          ))}
+        </ButtonsContainer>
+      </SessionContainer>
+    </div>
+  ))}
 
             <FooterContainer>
                 <div>
