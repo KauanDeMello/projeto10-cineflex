@@ -6,6 +6,7 @@ import { Link } from "react-router-dom"
 
 export default function SeatsPage() {
     const[sessao,Setsessao] = useState(undefined)
+    const [selectedSeats, SetselectedSeats] = useState([])
     const {idSessao} = useParams()
 
     useEffect(() => {
@@ -21,14 +22,36 @@ export default function SeatsPage() {
             return <div>Carregando...</div>
         }
 
+        function SeatClick(seat){
+            if(seat.isAvailable){
+                if(selectedSeats.includes(seat)) {
+                    SetselectedSeats(selectedSeats.filter((s) => s !== seat));
+                } else {
+                    SetselectedSeats([...selectedSeats, seat]);
+                }
+            } else{
+                alert("Assento Indisponível")
+            }
+        }
+
     return (
         <PageContainer>
             Selecione o(s) assento(s)
 
             <SeatsContainer>
                 {sessao.seats.map((seat) => ( 
-                    <SeatItem key={seat.id} available={seat.isAvailable}>
-                        {seat.name}
+                    <SeatItem 
+                    key ={seat.id} 
+                    available ={seat.isAvailable}
+                    selected = {selectedSeats.includes(seat)}
+                    onClick ={() => SeatClick(seat)}
+                    style = {{
+                        backgroundColor: seat.isAvailable ?
+                        selectedSeats.includes(seat) ? "#1AAE9E" : "#C3CFD9" : "#FBE192"
+                    }}
+                    >
+                    
+                    {seat.name}
                     </SeatItem>))}
             </SeatsContainer>
 
