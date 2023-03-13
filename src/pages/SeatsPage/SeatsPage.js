@@ -2,12 +2,16 @@ import styled from "styled-components"
 import { useParams } from "react-router-dom"
 import { useEffect,useState } from "react"
 import axios from "axios"
-import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 export default function SeatsPage() {
     const[sessao,Setsessao] = useState(undefined)
     const [selectedSeats, SetselectedSeats] = useState([])
+    const[name,Setname] = useState()
+    const[cpf,Setcpf] = useState() 
     const {idSessao} = useParams()
+    const navigate = useNavigate()
+
 
     useEffect(() => {
         const url = `https://mock-api.driven.com.br/api/v8/cineflex/showtimes/${idSessao}/seats`
@@ -33,6 +37,29 @@ export default function SeatsPage() {
                 alert("Assento Indisponível")
             }
         }
+
+       
+       
+
+        function handleSubmit(e){
+            
+
+            e.preventDefault()
+            const urlPost = "https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many"
+            
+            const reservaData ={
+                ids: selectedSeats.map((seat) => seat.id),
+                name: name,
+                cpf: cpf
+
+            }
+
+            const promise = axios.post(urlPost, reservaData)
+            promise.then(res => navigate("/sucesso"))
+            promise.catch(err => console.log(err.response.data)
+            
+       )}
+
 
     return (
         <PageContainer>
@@ -69,17 +96,29 @@ export default function SeatsPage() {
                     Indisponível
                 </CaptionItem>
             </CaptionContainer>
-
+            
+        
             <FormContainer>
+                <form onSubmit={handleSubmit}>
                 Nome do Comprador:
-                <input placeholder="Digite seu nome..." />
+                <input placeholder="Digite seu nome..." 
+                required
+                value={name}
+                onChange={e => Setname(e.target.value)}
+                />
 
                 CPF do Comprador:
-                <input placeholder="Digite seu CPF..." />
+                <input placeholder="Digite seu CPF..." 
+                value={cpf}
+                onChange={e => Setcpf(e.target.value)}
+                required
+                />
 
-                <button>Reservar Assento(s)</button>
+                <button type="submit">Reservar Assento(s)</button>
+                </form>
             </FormContainer>
-
+           
+            
             <FooterContainer>
                 <div>
                     <img src={sessao.movie.posterURL} alt="poster" />
@@ -115,7 +154,7 @@ const SeatsContainer = styled.div`
     justify-content: center;
     margin-top: 20px;
 `
-const FormContainer = styled.div`
+const FormContainer = styled.label`
     width: calc(100vw - 40px); 
     display: flex;
     flex-direction: column;
