@@ -26,24 +26,23 @@ export default function SeatsPage() {
             Selecione o(s) assento(s)
 
             <SeatsContainer>
-                <SeatItem>01</SeatItem>
-                <SeatItem>02</SeatItem>
-                <SeatItem>03</SeatItem>
-                <SeatItem>04</SeatItem>
-                <SeatItem>05</SeatItem>
+                {sessao.seats.map((seat) => ( 
+                    <SeatItem key={seat.id} available={seat.isAvailable}>
+                        {seat.name}
+                    </SeatItem>))}
             </SeatsContainer>
 
             <CaptionContainer>
                 <CaptionItem>
-                    <CaptionCircle />
+                    <CaptionCircle color="#8DD7CF"/>
                     Selecionado
                 </CaptionItem>
                 <CaptionItem>
-                    <CaptionCircle />
+                    <CaptionCircle color="#C3CFD9"/>
                     Disponível
                 </CaptionItem>
                 <CaptionItem>
-                    <CaptionCircle />
+                    <CaptionCircle color="#FBE192"/>
                     Indisponível
                 </CaptionItem>
             </CaptionContainer>
