@@ -65,7 +65,8 @@ export default function SeatsPage() {
                 dayDate: sessao.day.date,
                 dayWeekday: sessao.day.weekday,
                 name: name,
-                cpf: cpf
+                cpf: cpf,
+                Hora: sessao.name
             }}));
             promise.catch(err => alert(err.response.data.mensagem)
             

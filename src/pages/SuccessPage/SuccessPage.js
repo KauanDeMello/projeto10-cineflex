@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom"
 
 export default  function SucessPage() {
     const location = useLocation();
-    const { selectedSeats, movieTitle, dayDate, dayWeekday, name, cpf } = location.state;
+    const { selectedSeats, movieTitle, dayDate, dayWeekday, name, cpf, Hora } = location.state;
     
 
     
@@ -15,7 +15,7 @@ export default  function SucessPage() {
             <TextContainer>
                 <strong><p>Filme e sessão</p></strong>
                 <p>{movieTitle}</p>
-                <p>{dayWeekday} - {dayDate}</p>
+                <p>{Hora} - {dayDate}</p>
             </TextContainer>
 
             <TextContainer>
