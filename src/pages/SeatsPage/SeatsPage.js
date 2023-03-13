@@ -34,15 +34,15 @@ export default function SeatsPage() {
 
             <CaptionContainer>
                 <CaptionItem>
-                    <CaptionCircle color="#8DD7CF"/>
+                    <CaptionCircle color="#1AAE9E" border="0E7D71"/>
                     Selecionado
                 </CaptionItem>
                 <CaptionItem>
-                    <CaptionCircle color="#C3CFD9"/>
+                    <CaptionCircle color="#C3CFD9"border="7B8B99"/>
                     Disponível
                 </CaptionItem>
                 <CaptionItem>
-                    <CaptionCircle color="#FBE192"/>
+                    <CaptionCircle color="#FBE192" border="F7C52B"/>
                     Indisponível
                 </CaptionItem>
             </CaptionContainer>
@@ -114,8 +114,8 @@ const CaptionContainer = styled.div`
     margin: 20px;
 `
 const CaptionCircle = styled.div`
-    border: 1px solid blue;         // Essa cor deve mudar
-    background-color: lightblue;    // Essa cor deve mudar
+    border: 1px solid ${props => props.border};         
+    background-color: ${props => props.color};  
     height: 25px;
     width: 25px;
     border-radius: 25px;
