@@ -31,10 +31,10 @@ export default function SessionsPage() {
         <div key={day.id}> 
          <SessionContainer data-test="movie-day">
             {`${day.weekday} - ${day.date}`}
-        <ButtonsContainer data-test="showtime">
+        <ButtonsContainer>
           {day.showtimes.map((showtime) => (
-            <Link key={showtime.id} to ={`/assentos/${showtime.id}`}>
-            <button key={showtime.id}>{showtime.name}</button>
+            <Link data-test="showtime" key={showtime.id} to ={`/assentos/${showtime.id}`}>
+            <button  key={showtime.id}>{showtime.name}</button>
             </Link>
           ))}
         </ButtonsContainer>
