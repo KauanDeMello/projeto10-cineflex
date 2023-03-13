@@ -19,7 +19,6 @@ export default function SeatsPage() {
 
         const promise = axios.get(url)
         promise.then(res => Setsessao(res.data))
-        promise.then(res => console.log(res.data))
         promise.catch(err => console.log(err.response.data))
     },[idSessao, location])
         
@@ -79,7 +78,7 @@ export default function SeatsPage() {
 
             <SeatsContainer>
                 {sessao.seats.map((seat) => ( 
-                    <SeatItem 
+                    <SeatItem  data-test="seat"
                     key ={seat.id} 
                     available ={seat.isAvailable}
                     selected = {selectedSeats.includes(seat)}
@@ -113,26 +112,26 @@ export default function SeatsPage() {
             <FormContainer>
                 <form onSubmit={handleSubmit}>
                 Nome do Comprador:
-                <input placeholder="Digite seu nome..." 
+                <input data-test="client-name" placeholder="Digite seu nome..." 
                 required
                 value={name}
                 onChange={e => Setname(e.target.value)}
                 />
 
                 CPF do Comprador:
-                <input placeholder="Digite seu CPF..." 
+                <input data-test="client-cpf" placeholder="Digite seu CPF..." 
                 value={cpf}
                 onChange={e => Setcpf(e.target.value)}
                 required
                 />
 
-                <button type="submit">Reservar Assento(s)</button>
+                <button data-test="book-seat-btn" type="submit">Reservar Assento(s)</button>
                 </form>
                 
             </FormContainer>
            
             
-            <FooterContainer>
+            <FooterContainer data-test="footer">
                 <div>
                     <img src={sessao.movie.posterURL} alt="poster" />
                 </div>
