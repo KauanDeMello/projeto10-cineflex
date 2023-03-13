@@ -57,7 +57,6 @@ export default function SeatsPage() {
             }
 
             const promise = axios.post(urlPost, reservaData)
-            promise.then(res => alert("seus dados foram enviados!"))
             promise.then(res => navigate("/sucesso", { 
                 state: { 
                 id: res.id,
@@ -128,6 +127,7 @@ export default function SeatsPage() {
 
                 <button type="submit">Reservar Assento(s)</button>
                 </form>
+                
             </FormContainer>
            
             
@@ -137,7 +137,7 @@ export default function SeatsPage() {
                 </div>
                 <div>
                     <p>{sessao.movie.title}</p>
-                    <p>{sessao.day.date} - {sessao.day.weekday}</p>
+                    <p>{sessao.day.weekday} - {sessao.name}</p>
                 </div>
             </FooterContainer>
 
@@ -173,6 +173,12 @@ const FormContainer = styled.label`
     align-items: flex-start;
     margin: 20px 0;
     font-size: 18px;
+
+    form{ display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;}
+
     button {
         align-self: center;
     }
@@ -180,6 +186,7 @@ const FormContainer = styled.label`
         width: calc(100vw - 60px);
     }
 `
+
 const CaptionContainer = styled.div`
     display: flex;
     flex-direction: row;

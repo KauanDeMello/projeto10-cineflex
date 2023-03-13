@@ -3,7 +3,8 @@ import { Link, useLocation } from "react-router-dom"
 
 export default  function SucessPage() {
     const location = useLocation();
-    const { selectedSeats, movieTitle, dayDate, dayWeekday, name, cpf } = location().state;
+    const { selectedSeats, movieTitle, dayDate, dayWeekday, name, cpf } = location.state;
+    
 
     
     
@@ -19,7 +20,7 @@ export default  function SucessPage() {
 
             <TextContainer>
             <strong><p>Ingressos</p></strong>
-                <p>{selectedSeats.join(", ")}</p>
+            {selectedSeats.map(seat => <p key={seat.id}>Assento {seat.name}</p>)}
             </TextContainer>
 
             <TextContainer>

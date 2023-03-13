@@ -14,7 +14,6 @@ export default function SessionsPage() {
 
         const promise = axios.get(url)
         promise.then(res => setFilmes(res.data))
-        promise.then(res => console.log(res.data))
         promise.catch(err => console.log(err.response.data))
 
     }, [idFilme])
