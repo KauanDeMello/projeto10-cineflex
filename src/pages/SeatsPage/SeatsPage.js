@@ -1,16 +1,17 @@
 import styled from "styled-components"
-import { useParams } from "react-router-dom"
+import { useParams, useLocation } from "react-router-dom"
 import { useEffect,useState } from "react"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
 
 export default function SeatsPage() {
-    const[sessao,Setsessao] = useState(undefined)
-    const [selectedSeats, SetselectedSeats] = useState([])
-    const[name,Setname] = useState()
-    const[cpf,Setcpf] = useState() 
-    const {idSessao} = useParams()
-    const navigate = useNavigate()
+    const[sessao,Setsessao] = useState(undefined);
+    const [selectedSeats, SetselectedSeats] = useState([]);
+    const[name,Setname] = useState("");
+    const[cpf,Setcpf] = useState("");
+    const {idSessao} = useParams();
+    const navigate = useNavigate();
+    const location = useLocation()
 
 
     useEffect(() => {
@@ -20,7 +21,7 @@ export default function SeatsPage() {
         promise.then(res => Setsessao(res.data))
         promise.then(res => console.log(res.data))
         promise.catch(err => console.log(err.response.data))
-    },[])
+    },[idSessao, location])
         
         if (sessao ===undefined){
             return <div>Carregando...</div>
@@ -45,6 +46,7 @@ export default function SeatsPage() {
             
 
             e.preventDefault()
+            
             const urlPost = "https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many"
             
             const reservaData ={
@@ -55,8 +57,18 @@ export default function SeatsPage() {
             }
 
             const promise = axios.post(urlPost, reservaData)
-            promise.then(res => navigate("/sucesso"))
-            promise.catch(err => console.log(err.response.data)
+            promise.then(res => alert("seus dados foram enviados!"))
+            promise.then(res => navigate("/sucesso", { 
+                state: { 
+                id: res.id,
+                selectedSeats: selectedSeats,
+                movieTitle: sessao.movie.title,
+                dayDate: sessao.day.date,
+                dayWeekday: sessao.day.weekday,
+                name: name,
+                cpf: cpf
+            }}));
+            promise.catch(err => alert(err.response.data.mensagem)
             
        )}
 

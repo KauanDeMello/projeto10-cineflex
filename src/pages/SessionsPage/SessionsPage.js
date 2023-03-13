@@ -17,7 +17,7 @@ export default function SessionsPage() {
         promise.then(res => console.log(res.data))
         promise.catch(err => console.log(err.response.data))
 
-    }, [])
+    }, [idFilme])
 
         if (filmes === undefined){
             return <div>Carregando...</div>
