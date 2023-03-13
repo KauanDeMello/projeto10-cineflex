@@ -131,8 +131,8 @@ const CaptionItem = styled.div`
     font-size: 12px;
 `
 const SeatItem = styled.div`
-    border: 1px solid blue;         // Essa cor deve mudar
-    background-color: lightblue;    // Essa cor deve mudar
+    border: 1px solid #808F9D;
+    background-color: #C3CFD9; 
     height: 25px;
     width: 25px;
     border-radius: 25px;
