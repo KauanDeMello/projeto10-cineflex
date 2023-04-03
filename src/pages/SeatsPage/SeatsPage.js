@@ -87,7 +87,7 @@ export default function SeatsPage() {
                         backgroundColor: seat.isAvailable ?
                         selectedSeats.includes(seat) ? "#1AAE9E" : "#C3CFD9" : "#FBE192"
                     }}
-                    >
+                    >e
                     
                     {seat.name}
                     </SeatItem>))}
